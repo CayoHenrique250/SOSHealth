@@ -14,14 +14,21 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<AuthUser | null>(() => {
-    if (typeof window !== "undefined") {
-      const storedUser = localStorage.getItem("@SOSHealth:user");
-      return storedUser ? (JSON.parse(storedUser) as AuthUser) : null;
-    }
-    return null;
-  });
+  // Always start null so SSR and the first client render match (avoids hydration errors).
+  // Session is restored from localStorage after mount.
+  const [user, setUser] = useState<AuthUser | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    try {
+      const storedUser = localStorage.getItem("@SOSHealth:user");
+      if (storedUser) {
+        setUser(JSON.parse(storedUser) as AuthUser);
+      }
+    } catch {
+      localStorage.removeItem("@SOSHealth:user");
+    }
+  }, []);
 
   const login = (userData: AuthUser) => {
     setUser(userData);

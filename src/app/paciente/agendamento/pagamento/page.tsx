@@ -24,28 +24,27 @@ export default function PagamentoStep() {
     <main className="min-h-screen flex flex-col bg-[#f3f5f5]">
       <Header />
 
-      <section className="flex-1 max-w-xl mx-auto w-full px-6 py-12 flex flex-col items-center justify-center gap-8">
+      <section className="flex-1 max-w-xl mx-auto w-full px-4 sm:px-6 py-8 sm:py-12 flex flex-col items-center justify-center gap-6 sm:gap-8">
         <div className="text-center">
-          <h1 className="text-2xl md:text-3xl font-bold text-[#1e3e44] mb-2">Confirmação de Pagamento</h1>
-          <p className="text-gray-500 text-sm font-medium">Conclua o pagamento para garantir o agendamento do seu horário.</p>
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1e3e44] mb-2 px-2">Confirmação de Pagamento</h1>
+          <p className="text-gray-500 text-xs sm:text-sm font-medium px-2">Conclua o pagamento para garantir o agendamento do seu horário.</p>
         </div>
 
-        <div className="bg-white p-8 rounded-3xl shadow-md border border-gray-100 flex flex-col items-center gap-6 w-full">
-          <div className="flex items-center gap-2 text-[#6ba2a6] font-bold text-lg">
-            <QrCode className="w-6 h-6" /> Escaneie o QR Code Pix
+        <div className="bg-white p-4 sm:p-6 md:p-8 rounded-3xl shadow-md border border-gray-100 flex flex-col items-center gap-4 sm:gap-6 w-full">
+          <div className="flex items-center gap-2 text-[#6ba2a6] font-bold text-sm sm:text-base md:text-lg">
+            <QrCode className="w-5 h-5 sm:w-6 sm:h-6" /> Escaneie o QR Code Pix
           </div>
           
-          <div className="w-48 h-48 bg-gray-100 border-2 border-dashed border-gray-300 rounded-2xl flex items-center justify-center p-4">
-        
-            <div className="w-full h-full bg-[#1e3e44] flex flex-col items-center justify-center text-white text-center rounded-xl p-2 font-bold text-xs">
+          <div className="w-36 h-36 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-gray-100 border-2 border-dashed border-gray-300 rounded-2xl flex items-center justify-center p-3 sm:p-4">
+            <div className="w-full h-full bg-[#1e3e44] flex flex-col items-center justify-center text-white text-center rounded-xl p-2 font-bold text-[10px] sm:text-xs">
               QR CODE SIMULADO DE PAGAMENTO PIX
             </div>
           </div>
 
-          <p className="text-xs text-gray-400 text-center font-medium">Ou realize o pagamento físico diretamente na clínica no dia da consulta.</p>
+          <p className="text-[10px] sm:text-xs text-gray-400 text-center font-medium px-2">Ou realize o pagamento físico diretamente na clínica no dia da consulta.</p>
 
-          <button onClick={handleConfirm} className="w-full bg-[#1a353a] hover:bg-[#112427] text-white font-bold py-3 rounded-full shadow transition flex items-center justify-center gap-2 mt-2 text-base">
-            <CheckCircle2 className="w-5 h-5" /> Confirmar Agendamento
+          <button onClick={handleConfirm} className="w-full bg-[#1a353a] hover:bg-[#112427] text-white font-bold py-3 sm:py-4 rounded-full shadow transition flex items-center justify-center gap-2 mt-2 text-sm sm:text-base">
+            <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" /> Confirmar Agendamento
           </button>
         </div>
       </section>

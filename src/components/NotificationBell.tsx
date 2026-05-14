@@ -49,15 +49,19 @@ export default function NotificationBell({ role }: NotificationBellProps) {
       </button>
 
       {open ? (
-        <div className="absolute right-0 mt-2 w-80 rounded-2xl border border-slate-200 bg-white p-3 shadow-xl">
-          <p className="mb-2 text-sm font-semibold text-slate-800">Notificações</p>
+        <div
+          className="fixed inset-x-3 top-20 z-[100] flex max-h-[min(24rem,75vh)] w-auto flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 shadow-xl sm:absolute sm:inset-x-auto sm:left-auto sm:right-0 sm:top-full sm:mt-2 sm:max-h-none sm:w-80 sm:max-w-[min(20rem,calc(100vw-2rem))]"
+          role="dialog"
+          aria-label="Lista de notificações"
+        >
+          <p className="mb-2 shrink-0 text-sm font-semibold text-slate-800">Notificações</p>
           {notifications.length > 0 ? (
-            <ul className="space-y-2">
+            <ul className="min-h-0 flex-1 space-y-2 overflow-y-auto sm:max-h-96">
               {notifications.map((item) => (
                 <li key={item.id}>
                   <button
                     type="button"
-                    className="w-full cursor-pointer rounded-lg border border-slate-100 p-2 text-left transition hover:border-[#1e3e44]/30 hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3e44]"
+                    className="w-full cursor-pointer rounded-lg border border-slate-100 p-2 text-left transition hover:border-[#1e3e44]/30 hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3e44]"
                     onClick={() => {
                       if (item.href) {
                         router.push(item.href);
@@ -65,8 +69,8 @@ export default function NotificationBell({ role }: NotificationBellProps) {
                       }
                     }}
                   >
-                    <p className="text-sm font-medium text-slate-800">{item.title}</p>
-                    <p className="text-xs text-slate-600">{item.description}</p>
+                    <p className="text-sm font-medium text-slate-800 wrap-break-word">{item.title}</p>
+                    <p className="text-xs text-slate-600 wrap-break-word">{item.description}</p>
                     <p className="mt-1 text-[11px] text-slate-400">{item.timestamp}</p>
                     {item.href ? <p className="mt-1 text-[11px] font-semibold text-[#1e3e44]">Toque para abrir</p> : null}
                   </button>

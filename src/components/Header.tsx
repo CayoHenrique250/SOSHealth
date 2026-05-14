@@ -71,7 +71,7 @@ export default function Header() {
                       setProfileMenuOpen(false);
                       logout();
                     }}
-                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2 font-medium"
+                    className="hidden w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 md:flex items-center gap-2 font-medium"
                   >
                     <LogOut className="w-4 h-4" /> Sair
                   </button>
@@ -97,18 +97,29 @@ export default function Header() {
       </div>
 
       {user && mobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white border-b border-gray-200 shadow-lg py-4 px-6 flex flex-col gap-3 md:hidden z-40">
-          <Link href={dashboardLink} onClick={() => setMobileMenuOpen(false)} className="text-[#1e3e44] font-semibold text-base py-1 border-b border-gray-50 block">
+        <div className="absolute top-full left-0 z-40 flex w-full flex-col gap-3 border-b border-gray-200 bg-white px-6 py-4 shadow-lg md:hidden">
+          <Link href={dashboardLink} onClick={() => setMobileMenuOpen(false)} className="block border-b border-gray-50 py-1 text-base font-semibold text-[#1e3e44]">
             Início
           </Link>
           {isDoc && (
-            <Link href="/profissional/disponibilidade" onClick={() => setMobileMenuOpen(false)} className="text-[#1e3e44] font-semibold text-base py-1 border-b border-gray-50 block">
+            <Link href="/profissional/disponibilidade" onClick={() => setMobileMenuOpen(false)} className="block border-b border-gray-50 py-1 text-base font-semibold text-[#1e3e44]">
               Disponibilidade
             </Link>
           )}
-          <Link href={profileLink} onClick={() => setMobileMenuOpen(false)} className="text-[#6ba2a6] font-semibold text-base py-1 block">
+          <Link href={profileLink} onClick={() => setMobileMenuOpen(false)} className="block border-b border-gray-50 py-1 text-base font-semibold text-[#6ba2a6]">
             Meu Perfil
           </Link>
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              logout();
+            }}
+            className="flex w-full items-center gap-2 border-t border-gray-100 pt-3 text-left text-base font-semibold text-red-600"
+          >
+            <LogOut className="h-5 w-5 shrink-0" aria-hidden />
+            Sair
+          </button>
         </div>
       )}
     </header>
