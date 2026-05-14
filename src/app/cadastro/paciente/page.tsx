@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import Header from "@/src/components/Header";
 import { Input } from "@/src/components/Input";
 import { PasswordInput } from "@/src/components/PasswordInput";
-import { UserCircle } from "lucide-react";
+import Image from "next/image";
 import Footer from "@/src/components/Footer";
 import { registerPatient } from "@/src/services/api";
 
@@ -75,9 +75,15 @@ export default function CadastroPaciente() {
           </form>
         </div>
 
-        <div className="hidden md:flex flex-col items-center">
-          <div className="bg-[#6ba2a6] p-12 rounded-full mb-4">
-            <UserCircle className="w-48 h-48 text-white" />
+        <div className="hidden min-w-0 md:flex flex-col items-center md:translate-x-8 lg:translate-x-14 xl:translate-x-20">
+          <div className="relative mb-4 h-64 w-64 shrink-0 overflow-hidden rounded-full bg-[#6ba2a6] p-4 shadow-lg sm:h-72 sm:w-72">
+            <Image
+              src="/images/paciente.png"
+              alt="Ilustração de paciente com membro superior imobilizado"
+              fill
+              className="object-contain object-bottom"
+              sizes="288px"
+            />
           </div>
           <p className="text-[#1e3e44] font-medium italic">Paciente</p>
         </div>

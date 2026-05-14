@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Header from "@/src/components/Header";
 import LoginForm from "@/src/components/LoginForm";
 import Footer from "@/src/components/Footer";
@@ -18,14 +19,14 @@ export default function Login() {
           <LoginForm />
         </div>
 
-        <div className="flex h-96 w-96 flex-shrink-0 scale-90 items-center justify-center rounded-full bg-[#6ba2a6] p-10 shadow-inner md:-mr-16 md:scale-100">
-          <div className="flex items-end gap-3">
-            <div className="mx-1 h-48 w-16 rounded-full bg-[#1e3e44] opacity-90" />
-            <div className="mx-1 h-64 w-16 rounded-full border-t-8 border-[#992E2E] bg-white shadow-lg" />
-            <div className="mx-1 h-72 w-16 rounded-full bg-white shadow-lg" />
-            <div className="mx-1 h-64 w-16 rounded-full border-t-8 border-[#992E2E] bg-white shadow-lg" />
-            <div className="mx-1 h-52 w-16 rounded-full bg-[#1e3e44] opacity-90" />
-          </div>
+        <div className="relative h-96 w-96 shrink-0 scale-90 overflow-hidden rounded-full  shadow-inner md:-mr-16 md:scale-100 md:shadow-lg">
+          <Image
+            src="/images/médicos-e-pacientes.png"
+            alt="Médico e paciente em consulta: acolhimento e explicação de exame"
+            fill
+            className="object-contain"
+            sizes="384px"
+          />
         </div>
       </section>
 

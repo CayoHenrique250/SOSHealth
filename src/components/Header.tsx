@@ -1,6 +1,7 @@
 "use client";
 
-import { Activity, Calendar, LayoutDashboard, LogOut, Menu, User } from "lucide-react";
+import { Calendar, LayoutDashboard, LogOut, Menu, User } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/src/context/AuthContext";
 import { useState } from "react";
@@ -18,11 +19,15 @@ export default function Header() {
   return (
     <header className="relative z-50 w-full border-b border-gray-200 bg-[#f3f5f5] px-6 py-4 md:px-16">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 text-2xl font-bold tracking-tighter text-[#992E2E]">
-          <Activity className="h-8 w-8 stroke-[2.5]" />
-          <span className="font-light text-gray-800">
-            <strong className="font-bold text-[#992E2E]">SOS</strong>Health
-          </span>
+        <Link href="/" className="flex shrink-0 items-center">
+          <Image
+            src="/images/logoSos.png"
+            alt="Logo SOS Health com linha de batimento cardíaco em vermelho"
+            width={320}
+            height={80}
+            className="h-12 w-auto object-contain sm:h-14 md:h-16"
+            priority
+          />
         </Link>
 
         {user ? (

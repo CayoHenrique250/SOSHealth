@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import Header from "@/src/components/Header";
 import { Input } from "@/src/components/Input";
 import { PasswordInput } from "@/src/components/PasswordInput";
-import { Stethoscope } from "lucide-react";
+import Image from "next/image";
 import Footer from "@/src/components/Footer";
 import { registerProfessional } from "@/src/services/api";
 
@@ -82,9 +82,15 @@ export default function CadastroProfissional() {
           </form>
         </div>
 
-        <div className="hidden md:flex flex-col items-center">
-          <div className="bg-[#1e3e44] p-12 rounded-full mb-4">
-            <Stethoscope className="w-48 h-48 text-white" />
+        <div className="hidden min-w-0 md:flex flex-col items-center md:-translate-x-8 lg:-translate-x-14 xl:-translate-x-20">
+          <div className="relative mb-4 h-64 w-64 shrink-0 overflow-hidden rounded-full bg-[#2D545E] p-4 shadow-lg sm:h-72 sm:w-72">
+            <Image
+              src="/images/profissional.png"
+              alt="Ilustração de médico com jaleco segurando um raio-X"
+              fill
+              className="object-contain object-bottom"
+              sizes="288px"
+            />
           </div>
           <p className="text-[#1e3e44] font-medium italic">Profissional</p>
         </div>
