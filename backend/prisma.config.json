@@ -1,0 +1,6 @@
+{
+  "schema": {
+    "kind": "single",
+    "filePath": "./prisma/schema.prisma"
+  }
+}
