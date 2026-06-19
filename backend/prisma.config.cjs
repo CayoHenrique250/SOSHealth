@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   schema: {
     kind: 'single',
     filePath: './prisma/schema.prisma',
