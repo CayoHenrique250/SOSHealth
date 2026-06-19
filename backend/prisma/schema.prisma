@@ -5,7 +5,6 @@ generator client {
 // Configurado para PostgreSQL (Supabase) para ambiente de produção
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 // Tabela de Usuários (Base para Pacientes e Profissionais)
