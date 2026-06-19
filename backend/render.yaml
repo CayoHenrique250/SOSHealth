@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: soshealth-backend
+    env: node
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_VERSION
+        value: 20.x
+      - key: DATABASE_URL
+        sync: false
+      - key: PORT
+        value: 3001
+      - key: JWT_SECRET
+        sync: false

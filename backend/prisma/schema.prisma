@@ -2,9 +2,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// Configurado para SQLite para facilitar o desenvolvimento local
+// Configurado para PostgreSQL (Supabase) para ambiente de produção
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 // Tabela de Usuários (Base para Pacientes e Profissionais)
