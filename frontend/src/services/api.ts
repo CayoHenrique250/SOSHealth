@@ -578,7 +578,6 @@ export const fetchDoctorCalendar = async (
     `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
   const response = await fetch(`${API_URL}/professionals/${doctorId}/calendar?month=${key}`);
   if (!response.ok) {
-    // Fallback: generate mock calendar so hardcoded doctors still show availability
     const [y, mo] = key.split("-").map(Number);
     return generateMockCalendarForMonth(doctorId, y || now.getFullYear(), (mo || now.getMonth() + 1) - 1);
   }

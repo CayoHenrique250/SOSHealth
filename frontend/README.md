@@ -1,10 +1,10 @@
-# 🏥 SOSHealth Frontend
+# SOSHealth Frontend
 
 Interface moderna e acessível para o sistema médico SOSHealth, desenvolvida com **Next.js**, **React**, e **Tailwind CSS**.
 
 ---
 
-## ✨ Destaques
+## Destaques
 
 - ✅ **Framework**: Next.js 16 (App Router)
 - ✅ **Estilização**: Tailwind CSS 4
@@ -16,7 +16,7 @@ Interface moderna e acessível para o sistema médico SOSHealth, desenvolvida co
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Instalar Dependências
 
@@ -51,6 +51,18 @@ npm run lint       # Executa o ESLint para encontrar problemas no código
 npm run test       # Executa os testes unitários com Jest
 npm run test:cov   # Executa os testes com relatório de cobertura
 ```
+
+---
+
+## Deploy
+
+O frontend está otimizado para deploy no **Vercel**.
+
+1. Conecte o repositório do GitHub no painel do Vercel.
+2. Na etapa de configuração, adicione a Variável de Ambiente:
+   - Name: `NEXT_PUBLIC_API_URL`
+   - Value: `https://[sua-api-no-render].onrender.com`
+3. O Vercel detectará automaticamente que é um projeto Next.js e fará o build corretamente.
 
 ---
 

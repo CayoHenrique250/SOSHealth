@@ -6,6 +6,9 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
 [![Prisma](https://img.shields.io/badge/Prisma-7.8+-2D3748?logo=prisma)](https://www.prisma.io/)
+[![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?logo=supabase)](https://supabase.com/)
+[![Render](https://img.shields.io/badge/Render-API-000000?logo=render)](https://render.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-Frontend-000000?logo=vercel)](https://vercel.com/)
 
 > **Conectando pacientes a profissionais de saúde com tecnologia, segurança e acessibilidade.**
 
@@ -19,8 +22,8 @@ O projeto é composto por dois módulos principais:
 
 | Módulo | Tecnologia | Porta | Documentação |
 |--------|-----------|-------|-------------|
-| **Frontend** | Next.js 16 + React 19 | `3000` | [frontend/README.md](./frontend/README.md) |
-| **Backend** | NestJS 11 + Prisma + SQLite | `3001` | [backend/README.md](./backend/README.md) |
+| **Frontend** | Next.js 16 + React 19 (Vercel) | `3000` | [frontend/README.md](./frontend/README.md) |
+| **Backend** | NestJS 11 + Prisma + PostgreSQL (Render + Supabase) | `3001` | [backend/README.md](./backend/README.md) |
 
 ---
 
@@ -114,6 +117,16 @@ npm run dev
 
 ---
 
+## 🚀 Deploy em Produção
+
+O projeto está configurado para deploy fácil nos seguintes provedores de nuvem modernos:
+
+- **Frontend:** Vercel (CI/CD Automático). Basta conectar o repositório e configurar a variável `NEXT_PUBLIC_API_URL` apontando para o Render.
+- **Backend:** Render. A pasta do backend inclui um `render.yaml` para configuração como Web Service. Requer a configuração de `DATABASE_URL` e `JWT_SECRET`.
+- **Banco de Dados:** Supabase (PostgreSQL). O Prisma já está configurado para utilizar a string de pooler (`DATABASE_URL`) e a de conexão direta (`DIRECT_URL`) para migrations.
+
+---
+
 ## Stack Tecnológica
 
 ### Frontend
@@ -135,7 +148,7 @@ npm run dev
 | NestJS | 11.0+ | Framework Node.js |
 | TypeScript | 5.7+ | Linguagem |
 | Prisma | 7.8+ | ORM e migrations |
-| SQLite | — | Banco de dados local |
+| PostgreSQL | — | Banco de dados (hospedado no Supabase) |
 | JWT / Passport | — | Autenticação |
 | bcrypt | 6.0+ | Hash de senhas |
 | Swagger | 11.4+ | Documentação da API |
@@ -145,7 +158,7 @@ npm run dev
 
 ## Modelo de Dados
 
-O banco de dados é gerenciado pelo **Prisma ORM** com **SQLite** e conta com os seguintes modelos principais:
+O banco de dados é gerenciado pelo **Prisma ORM** com **PostgreSQL** e conta com os seguintes modelos principais:
 
 ```
 User ──┬── Patient ──── Anamnese

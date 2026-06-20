@@ -1,6 +1,6 @@
 # SOSHealth Backend
 
-Backend robusto e seguro para o sistema médico SOSHealth, desenvolvido com **NestJS**, **Prisma** e **SQLite**.
+Backend robusto e seguro para o sistema médico SOSHealth, desenvolvido com **NestJS**, **Prisma** e **PostgreSQL (Supabase)**.
 
 [![License](https://img.shields.io/badge/License-UNLICENSED-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-20.0+-green.svg)](https://nodejs.org/)
@@ -33,8 +33,13 @@ npm install
 ### 2. Configurar Banco de Dados
 
 ```bash
-# Executar migrations
-npx prisma migrate dev
+# Configurar variáveis de ambiente
+# Copie as chaves do Supabase para o seu .env (DATABASE_URL e DIRECT_URL)
+
+# Executar migrations no banco (cria as tabelas no Supabase)
+npx prisma db push
+# ou
+npx prisma migrate dev --name init
 ```
 
 ### 3. Iniciar em Desenvolvimento
@@ -151,10 +156,6 @@ Content-Type: application/json
 }
 ```
 
-Para mais exemplos, veja [API_TESTING_GUIDE.md](./API_TESTING_GUIDE.md)
-
----
-
 ## Segurança
 
 ### Implementado
@@ -220,7 +221,7 @@ Lines:        90.8%
 ├─────────────────────────────┤
 │  Repository (Prisma)        │
 ├─────────────────────────────┤
-│  Database (SQLite)          │
+│  Database (Supabase/PG)     │
 └─────────────────────────────┘
 ```
 
@@ -265,8 +266,6 @@ if (response.ok) {
 }
 ```
 
-Veja: [FRONTEND_INTEGRATION_GUIDE.md](./FRONTEND_INTEGRATION_GUIDE.md)
-
 ---
 
 ## Tecnologias
@@ -276,7 +275,7 @@ Veja: [FRONTEND_INTEGRATION_GUIDE.md](./FRONTEND_INTEGRATION_GUIDE.md)
 | **NestJS** | 11.0+ | Framework web |
 | **TypeScript** | 5.7+ | Linguagem |
 | **Prisma** | 7.8+ | ORM |
-| **SQLite** | Latest | Banco de dados |
+| **PostgreSQL** | Latest | Banco de dados (Supabase) |
 | **bcrypt** | Latest | Criptografia |
 | **class-validator** | 0.15+ | Validação |
 | **Jest** | 30.0+ | Testes |
@@ -285,18 +284,23 @@ Veja: [FRONTEND_INTEGRATION_GUIDE.md](./FRONTEND_INTEGRATION_GUIDE.md)
 
 ## Deploy
 
-### Build para Produção
+### Render (Recomendado)
 
-```bash
-npm run build
-npm run start:prod
-```
+O projeto inclui um arquivo `render.yaml` na raiz que serve como blueprint.
+Basta conectar seu repositório no Render, que ele criará automaticamente um Web Service.
 
-### Variáveis de Ambiente
+**Comandos executados no deploy:**
+- Build: `npm install && npx prisma generate && npm run build`
+- Start: `npm run start:prod`
+
+### Variáveis de Ambiente (Produção)
+
+No painel do Render, configure as seguintes variáveis:
 
 ```env
-DATABASE_URL="file:./prisma/prod.db"
+DATABASE_URL="postgresql://postgres.[REF]:[SENHA]@aws-0-sa-east-1.pooler.supabase.com:6543/postgres?pgbouncer=true&connection_limit=1"
 PORT=3001
+JWT_SECRET="sua_chave_secreta_super_segura"
 NODE_ENV=production
 ```
 
