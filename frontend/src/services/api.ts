@@ -669,11 +669,34 @@ export const fetchProfessionalDashboardData =
     return response.json();
   };
 
-export const fetchPatientProfile = async (): Promise<any> => {
+export const fetchPatientProfile = async (): Promise<PatientProfileData> => {
   const response = await fetch(`${API_URL}/users/profile`, { headers: getAuthHeaders() });
   if (!response.ok) throw new Error("Erro ao buscar perfil.");
   const data = await response.json();
-  return data;
+  return {
+    personal: {
+      name: data.name || "",
+      cpf: data.patient?.cpf || "",
+      birthDate: data.patient?.birthDate ? data.patient.birthDate.split("T")[0] : "",
+      email: data.email || "",
+      phone: data.phone || "",
+      address: data.address || "",
+      avatar: data.avatar || "",
+    },
+    medical: data.patient?.anamnese || {
+      queixaPrincipal: "",
+      hda: "",
+      hppHf: "",
+      habitos: "",
+      medicamentos: "",
+      alergias: "",
+      cirurgiasPrevias: "",
+      vacinacao: "",
+      observacoes: "",
+      weightKg: 0,
+      heightM: 0,
+    },
+  };
 };
 
 export const updatePatientProfile = async (payload: {
@@ -691,10 +714,27 @@ export const updatePatientProfile = async (payload: {
 
 export const fetchProfessionalProfile =
   async (): Promise<ProfessionalProfileData> => {
-    const response = await fetch(`${API_URL}/users/profile/professional`, { headers: getAuthHeaders() });
+    const response = await fetch(`${API_URL}/users/profile`, { headers: getAuthHeaders() });
     if (!response.ok) throw new Error("Erro ao buscar perfil.");
     const data = await response.json();
-    return data;
+    return {
+      personal: {
+        name: data.name || "",
+        specialty: data.professional?.specialty || "",
+        councilNumber: data.professional?.councilNumber || "",
+        birthDate: data.professional?.birthDate ? data.professional.birthDate.split("T")[0] : "",
+        email: data.email || "",
+        phone: data.phone || "",
+        address: data.address || "",
+        avatar: data.avatar || "",
+      },
+      curriculum: data.professional?.curriculum || {
+        summary: "",
+        education: "",
+        experience: "",
+        certifications: "",
+      },
+    };
   };
 
 export const updateProfessionalProfile = async (payload: {
