@@ -2,12 +2,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// Configurado para PostgreSQL (Supabase) para ambiente de produção
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-// Tabela de Usuários (Base para Pacientes e Profissionais)
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
@@ -15,18 +14,16 @@ model User {
   name      String
   phone     String
   address   String
-  role      String   // "PACIENTE" ou "PROFISSIONAL"
+  role      String   
   avatar    String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Relações
   patient       Patient?
   professional  Professional?
   notifications Notification[]
 }
 
-// Dados específicos do Paciente
 model Patient {
   id        String   @id @default(uuid())
   cpf       String   @unique
@@ -57,12 +54,11 @@ model Anamnese {
   patient          Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
 }
 
-// Dados específicos do Profissional
 model Professional {
   id             String   @id @default(uuid())
-  councilNumber  String   @unique // CRM, CRP, etc.
+  councilNumber  String   @unique 
   birthDate      DateTime
-  specialty      String?  // Especialidade médica
+  specialty      String?  
   
   userId         String   @unique
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -83,16 +79,14 @@ model Curriculum {
   professional   Professional @relation(fields: [professionalId], references: [id], onDelete: Cascade)
 }
 
-// Novos Modelos para Funcionalidade Real
-
 model Appointment {
   id              String   @id @default(uuid())
   patientId       String
   professionalId  String
-  date            String   // ex: "2026-05-10"
-  time            String   // ex: "14:00"
-  mode            String   // "Presencial" ou "Teleatendimento"
-  status          String   @default("pagamento_pendente") // "pagamento_pendente", "confirmada", "realizada", "cancelada"
+  date            String  
+  time            String   
+  mode            String  
+  status          String   @default("pagamento_pendente") 
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
@@ -126,8 +120,8 @@ model Notification {
 model Availability {
   id             String   @id @default(uuid())
   professionalId String
-  date           String   // ex: "2026-05-10"
-  slots          String   // Array JSON serializado ou comma-separated ex: "08:00,09:00"
+  date           String   
+  slots          String   
 
   professional   Professional @relation(fields: [professionalId], references: [id], onDelete: Cascade)
 
