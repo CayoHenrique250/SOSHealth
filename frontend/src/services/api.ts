@@ -883,7 +883,7 @@ export const fetchAvailabilityByMonth = async (
 
 export const saveAvailability = async (payload: AvailabilityPayload): Promise<void> => {
 
-  const monthKey = payload.monthKey ?? payload.date.slice(0, 7);
+  const monthKey = payload.monthKey;
   const response = await fetch(`${API_URL}/professionals/availability`, {
     method: "PUT",
     headers: getAuthHeaders(),
