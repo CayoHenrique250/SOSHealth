@@ -1,6 +1,6 @@
 export type UserRole = "paciente" | "profissional";
 export type AttendanceMode = "Teleatendimento" | "Presencial";
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://soshealth-backend.onrender.com";
 
 export interface AuthUser {
   name: string;
